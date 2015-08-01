@@ -1,0 +1,39 @@
+<openerp>
+	<data>
+		<record id ="account_invoice_add_fields_trendz" model ="ir.ui.view">
+			<field name = "name">Adding fields</field>
+			<field name = "model">account.invoice</field>
+			<field name = "inherit_id" ref="account.invoice_form"/>
+			<field name = "arch" type="xml">
+				<xpath  expr = "/form/sheet/group/group" position ="inside">
+					<field name = "transport" />
+					<field name = "billing_type" />
+				</xpath>			
+				<xpath expr = "/form/sheet/group/group/field[@name='journal_id']" position="after">
+					<field name = "gp_no" />
+					<field name = "dated" />
+					<field name = "packages" />
+				</xpath>
+				<xpath expr="//field[@name='amount_untaxed']" position="after">
+                    <div>
+                   	    <field name="vat_inv" class="oe_inline" required="1"/>
+                   	     <label for ="vat_inv_val" />
+                   	</div>
+                   	    <field name="vat_inv_val" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                   	
+                   	<div>
+                   	    <field name="cst_inv" class="oe_inline" required="1"/>
+                   	    <label for ="cst_inv_val"/>
+                   	</div>
+                   	    <field name="cst_inv_val" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<!-- Adding product tab in accounting -->
+        <menuitem id = "child_accouting_product" name =" Products" parent = "account.menu_finance_receivables" action="product.product_template_action" />
+		
+	</data>
+</openerp>
+
+

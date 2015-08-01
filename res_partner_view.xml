@@ -1,0 +1,34 @@
+<openerp>
+	<data>
+		<record id ="res_partner_add_fields_trendz" model ="ir.ui.view">
+			<field name = "name">Adding fields</field>
+			<field name = "model">res.partner</field>
+			<field name = "inherit_id" ref="base.view_partner_form"/>
+			<field name = "arch" type="xml">
+				<xpath expr = "/form/sheet/group/group/field[@name = 'website']" position = "after">
+					<field name = "tin" />
+				</xpath>
+				<xpath expr = "/form/sheet/group/group/field[@name='title']" position = "after" >
+					<field name = "cst" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record id ="res_company_add_fields_trendz" model ="ir.ui.view">
+			<field name = "name">Adding fields</field>
+			<field name = "model">res.company</field>
+			<field name = "inherit_id" ref="base.view_company_form"/>
+			<field name = "arch" type="xml">
+				<xpath expr = "//field[@name = 'phone']" position = "after">
+					<field name = "mobile" />
+				</xpath>
+				<xpath expr = "//field[@name = 'vat']" position="attributes">
+				    <attribute name = "string">TIN</field>
+				</xpath>
+				<xpath expr = "//field[@name = 'company_registry']" position="attributes">
+				    <attribute name = "string">CST</field>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
