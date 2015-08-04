@@ -21,12 +21,7 @@
 			<field name = "arch" type="xml">
 				<xpath expr = "//field[@name = 'phone']" position = "after">
 					<field name = "mobile" />
-				</xpath>
-				<xpath expr = "//field[@name = 'vat']" position="attributes">
-				    <attribute name = "string">TIN</field>
-				</xpath>
-				<xpath expr = "//field[@name = 'company_registry']" position="attributes">
-				    <attribute name = "string">CST</field>
+					<field name = "tin"/>
 				</xpath>
 			</field>
 		</record>

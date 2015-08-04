@@ -5,7 +5,9 @@ class res_partner(osv.osv):
     _description = "Adding Fields"
     _columns = {
                 'mobile':fields.char('Mobile'),
+                'tin':fields.char('TIN',size=15)
                 }
+
 
 
 class res_partner(osv.osv):
