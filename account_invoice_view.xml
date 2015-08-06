@@ -14,19 +14,6 @@
 					<field name = "dated" />
 					<field name = "packages" />
 				</xpath>
-				<xpath expr="//field[@name='amount_untaxed']" position="after">
-                    <div>
-                   	    <field name="vat_inv" class="oe_inline" required="1"/>
-                   	     <label for ="vat_inv_val" />
-                   	</div>
-                   	    <field name="vat_inv_val" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                   	
-                   	<div>
-                   	    <field name="cst_inv" class="oe_inline" required="1"/>
-                   	    <label for ="cst_inv_val"/>
-                   	</div>
-                   	    <field name="cst_inv_val" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-				</xpath>
 			</field>
 		</record>
 		
