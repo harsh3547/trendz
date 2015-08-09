@@ -29,7 +29,7 @@
    """,
     'website': '',
     'images' : [], #'/images/image_name.png'
-    'depends' : ['base','account','report_webkit'],#account_analytic_analysis
+    'depends' : ['base','account_accountant','report_webkit'],#account_analytic_analysis
     'data': [
              'account_invoice_view.xml',
              'view/report_invoice.xml',
