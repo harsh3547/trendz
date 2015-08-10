@@ -168,7 +168,7 @@ table {
 						% else:
 							<td style="vertical-align:top">${invoice_line_data[i]['no']}</td>
 						% endif
-						<td style="padding-left:3px;">${i}${invoice_line_data[i]['name'] or ''}</td>
+						<td style="padding-left:3px;">${invoice_line_data[i]['name'] or ''}</td>
 						<td>${invoice_line_data[i]['qty'] or ''}</td>
 						<td>${invoice_line_data[i]['rate'] or ''}</td>
 				
@@ -181,6 +181,7 @@ table {
 				
 
 				
+
 				<tr style="text-align:center;height:35px;">
 					<td> </td>
 					<% set tax = o.amount_tax %>

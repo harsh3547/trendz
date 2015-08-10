@@ -63,7 +63,11 @@ class trendz_invoice_report(report_sxw.rml_parse):
 
             for i in range(fit_number*(page_no+1)-effective_line_printed):
                 lines.append({'no':False,'name':False,'qty':False,'rate':False, 'discount':False, 'rupee':False,'paisa':False,'effective_line_no':effective_line})
-                    
+            # to leave space for tax free goods
+            for i in range(2):
+                lines.append({'no':False,'name':False,'qty':False,'rate':False, 'discount':False, 'rupee':False,'paisa':False,'effective_line_no':effective_line})
+
+
         
         no_of_invoice_lines=len(lines)
         return [no_of_invoice_lines,lines]
