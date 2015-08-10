@@ -56,7 +56,7 @@ class trendz_invoice_report(report_sxw.rml_parse):
                 #print "----effective_line",effective_line
                 i+=1
                 if effective_line > page_no*fit_number and effective_line <= (page_no+1)*fit_number:
-                    lines.append({'no':i,'name':obj.name,'qty':obj.quantity,'rate':obj.price_unit, 'discount':obj.discount or '', 'rupee':money_rs_p[0],'paisa':money_rs_p[1],'effective_line_no':effective_line})
+                    lines.append({'no':str(i),'name':str(obj.name),'qty':str(obj.quantity),'rate':str(obj.price_unit), 'discount':str(obj.discount) or '', 'rupee':str(money_rs_p[0]),'paisa':str(money_rs_p[1]),'effective_line_no':effective_line})
                     effective_line_printed = effective_line
                     print "----effective_line",effective_line , abc1,abc2,abc3,abc4
             print "----------lines , effective_lines",i,effective_line,lines,effective_line_printed    
@@ -72,7 +72,7 @@ class trendz_invoice_report(report_sxw.rml_parse):
         return 29
         
     def _get_city_state_zip(self,partner_obj):
-        address = (partner_obj.city if partner_obj.city else '') + ('-'+partner_obj.zip if partner_obj.zip else '') + (', '+partner_obj.state_id.name if partner_obj.state_id else '')
+        address = (partner_obj.city if partner_obj.city else '') + (' - '+partner_obj.zip if partner_obj.zip else '') + (', '+partner_obj.state_id.name if partner_obj.state_id else '')
         return address
         
     def _split_money(self,num):
