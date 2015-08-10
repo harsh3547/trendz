@@ -164,9 +164,9 @@ table {
 				<% for i in range(no_of_invoice_lines) %>
 					<tr style="text-align:center">
 						% if not invoice_line_data[i]['no']:
-							<td>${i}&nbsp;</td>
+							<td>&nbsp;</td>
 						% else:
-							<td style="vertical-align:top">${i}${invoice_line_data[i]['no']}</td>
+							<td style="vertical-align:top">${invoice_line_data[i]['no']}</td>
 						% endif
 						<td style="padding-left:3px;">${invoice_line_data[i]['name'] or ''}</td>
 						<td>${invoice_line_data[i]['qty'] or ''}</td>
