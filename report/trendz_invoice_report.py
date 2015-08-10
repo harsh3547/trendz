@@ -69,7 +69,7 @@ class trendz_invoice_report(report_sxw.rml_parse):
         return [no_of_invoice_lines,lines]
     
     def _fit_number(self):
-        return 29
+        return 28
         
     def _get_city_state_zip(self,partner_obj):
         address = (partner_obj.city if partner_obj.city else '') + (' - '+partner_obj.zip if partner_obj.zip else '') + (', '+partner_obj.state_id.name if partner_obj.state_id else '')

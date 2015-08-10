@@ -62,7 +62,7 @@ table {
 				Deals in : All kinds of footwear
 			</div>
 			<div style="text-align:center;width:100%;font-family:Arial;text-align:center;font-size:13pt;padding-top:2px;padding-bottom:2px"> 
-				% if company.vat:
+				% if company.tin:
 					TIN: ${company.tin} &nbsp;&nbsp;
 				% endif
 				% if company.phone: 
@@ -164,11 +164,11 @@ table {
 				<% for i in range(no_of_invoice_lines) %>
 					<tr style="text-align:center">
 						% if not invoice_line_data[i]['no']:
-							<td>${i}&nbsp;</td>
+							<td>&nbsp;</td>
 						% else:
-							<td style="vertical-align:top">${i}${invoice_line_data[i]['no']}</td>
+							<td style="vertical-align:top">${invoice_line_data[i]['no']}</td>
 						% endif
-						<td style="padding-left:3px;">${invoice_line_data[i]['name'] or ''}</td>
+						<td style="padding-left:3px;">${i}${invoice_line_data[i]['name'] or ''}</td>
 						<td>${invoice_line_data[i]['qty'] or ''}</td>
 						<td>${invoice_line_data[i]['rate'] or ''}</td>
 				
@@ -181,9 +181,14 @@ table {
 				
 
 				
-				<tr style="text-align:center;height:10px">
+				<tr style="text-align:center;height:35px;">
 					<td> </td>
-					<td> </td>
+					<% set tax = o.amount_tax %>
+					% if tax == 0 :
+						<td><b><u>TAX FREE GOODS</u></b></td>
+					% else :
+						<td> </td>
+					% endif
 					<td> </td>
 					<td> </td>
 					<td> </td>
