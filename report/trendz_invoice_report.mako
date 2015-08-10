@@ -62,7 +62,7 @@ table {
 				Deals in : All kinds of footwear
 			</div>
 			<div style="text-align:center;width:100%;font-family:Arial;text-align:center;font-size:13pt;padding-top:2px;padding-bottom:2px"> 
-				% if company.vat:
+				% if company.tin:
 					TIN: ${company.tin} &nbsp;&nbsp;
 				% endif
 				% if company.phone: 
