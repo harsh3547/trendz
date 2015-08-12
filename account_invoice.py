@@ -27,7 +27,7 @@ class account_invoice(osv.osv):
             
     
     _columns = {
-                'transport':fields.char('Goods Sent Through',size=48),
+                'transport':fields.many2one('transport.transport',string='Goods Sent Through'),
                 'gp_no':fields.char('GR/RR No.',size=13),
                 'dated':fields.date('Dated',help = "GR/RR No. Dated"),
                 'packages':fields.char("No. of Packages",size=8),
@@ -42,3 +42,8 @@ class account_invoice(osv.osv):
     
     _defaults = {'billing_type':'bill',
                  }
+
+class transport_transport(osv.osv):
+    _name='transport.transport'
+    _columns={'name':fields.char('Transport Name')}
+    

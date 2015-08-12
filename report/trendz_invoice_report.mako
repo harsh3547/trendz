@@ -116,8 +116,8 @@ table {
 				<td style="width:30%;">
 				<table style="width:100%;">
 					<tr><td style="width:30%;">Bill No. : ${o.number or ''}</td></tr>
-					<tr><td style="border-top:solid black 1px">Date : ${o.date_invoice or ''}</td></tr>
-					<tr><td style="border-top:solid black 1px">GR/RR No. : ${o.gp_no or ''}</td></tr>
+					<tr><td style="border-top:solid black 1px">Date : ${date_change(o.date_invoice or False)}</td></tr>
+					<tr><td style="border-top:solid black 1px">GR/RR No. : ${date_change(o.dated or False)}</td></tr>
 					<tr><td style="border-top:solid black 1px">Dated : ${o.dated or ''}</td></tr>
 					<tr><td style="border-top:solid black 1px">No. of Package : ${o.packages or ''}</td></tr>
 				</table>

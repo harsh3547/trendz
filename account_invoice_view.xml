@@ -19,8 +19,23 @@
 		
 		<!-- Adding product tab in accounting -->
         <menuitem id = "child_accouting_product" name =" Products" parent = "account.menu_finance_receivables" action="product.product_template_action" />
-		
+	
+
+        <record id="transport_view_form" model="ir.ui.view">
+            <field name="name">transport.view.form</field>
+            <field name="model">transport.transport</field>
+            <field name="arch" type="xml">
+				<form string="Transport">
+					<group>
+						<field name = "name" />
+					</group>
+				</form>
+			</field>
+		</record>
+
 	</data>
+
+
 </openerp>
 
 

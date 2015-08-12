@@ -3,7 +3,7 @@ from openerp.report import report_sxw
 from openerp.osv import osv
 from openerp.tools.translate import _
 from openerp.tools.amount_to_text_en import amount_to_text 
-
+from datetime import datetime, timedelta
 
 class trendz_invoice_report(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
@@ -23,8 +23,17 @@ class trendz_invoice_report(report_sxw.rml_parse):
                                   'get_pages':self._get_pages,
                                   'fit_number':self._fit_number,
                                   'get_invoice_line_data':self._get_invoice_line_data,
+                                  'date_change':self._date_change,
                                   })
-    
+    def _date_change(self,date=False):
+        print date,type(date)
+        if date:
+            date1=datetime.strptime(date,"%Y-%m-%d")
+            date=date1.strftime("%d-%m-%Y")
+            return date
+        return ''
+
+
     def _get_pages(self):
         cr=self.cr
         uid=self.uid
