@@ -143,7 +143,7 @@ table {
 				<tr style="vertical-align:bottom;"  >
 					<td style="text-align:center;" >S.No.</td>
 					<td style="text-align:center;" >Description Of Goods</td>
-					<td style="text-align:center;" >Quantity</td>
+					<td style="text-align:center;" >Quantity (Pairs)</td>
 					<td style="text-align:center;" >Rate</td>
 				
 					<td colspan="2" style="text-align:center;">Amount</td>
