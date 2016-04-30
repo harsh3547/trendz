@@ -156,7 +156,7 @@ table {
 					<td></td>
 					<td></td>
 				
-					<td></td>
+					<td>(Pairs)</td>
 					<td></td>
 					<td></td>
 					<td></td>
