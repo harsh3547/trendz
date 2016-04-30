@@ -1,33 +1,35 @@
 <openerp>
 	<data>
-		<record id ="account_invoice_add_fields_trendz" model ="ir.ui.view">
-			<field name = "name">Adding fields</field>
-			<field name = "model">account.invoice</field>
-			<field name = "inherit_id" ref="account.invoice_form"/>
-			<field name = "arch" type="xml">
-				<xpath  expr = "/form/sheet/group/group" position ="inside">
-					<field name = "transport" />
-					<field name = "billing_type" />
-				</xpath>			
-				<xpath expr = "/form/sheet/group/group/field[@name='journal_id']" position="after">
-					<field name = "gp_no" />
-					<field name = "dated" />
-					<field name = "packages" />
+		<record id="account_invoice_add_fields_trendz" model="ir.ui.view">
+			<field name="name">Adding fields</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/group/group" position="inside">
+					<field name="transport" />
+					<field name="billing_type" />
+				</xpath>
+				<xpath expr="/form/sheet/group/group/field[@name='journal_id']"
+					position="after">
+					<field name="gp_no" />
+					<field name="dated" />
+					<field name="packages" />
 				</xpath>
 			</field>
 		</record>
-		
-		<!-- Adding product tab in accounting -->
-        <menuitem id = "child_accouting_product" name =" Products" parent = "account.menu_finance_receivables" action="product.product_template_action" />
-	
 
-        <record id="transport_view_form" model="ir.ui.view">
-            <field name="name">transport.view.form</field>
-            <field name="model">transport.transport</field>
-            <field name="arch" type="xml">
+		<!-- Adding product tab in accounting -->
+		<menuitem id="child_accouting_product" name=" Products"
+			parent="account.menu_finance_receivables" action="product.product_template_action" />
+
+
+		<record id="transport_view_form" model="ir.ui.view">
+			<field name="name">transport.view.form</field>
+			<field name="model">transport.transport</field>
+			<field name="arch" type="xml">
 				<form string="Transport">
 					<group>
-						<field name = "name" />
+						<field name="name" />
 					</group>
 				</form>
 			</field>

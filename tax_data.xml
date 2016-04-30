@@ -1,21 +1,21 @@
 <openerp>
 	<data noupdate="1">
-	    
-	    <record id="tax_vat_data" model="account.tax">
-	        <field name="name">VAT</field>
-	        <field name="type_tax_use">sale</field>
-	        <field name="active">True</field>
-	        <field name="type">percent</field>
-	        <field name="amount">0.05</field>
-	    </record>
-		
-   	    <record id="tax_cst_data" model="account.tax">
-	        <field name="name">CST</field>
-	        <field name="type_tax_use">sale</field>
-	        <field name="active">True</field>
-	        <field name="type">percent</field>
-	        <field name="amount">0.02</field>
-	    </record>
-	    	    
+
+		<record id="tax_vat_data" model="account.tax">
+			<field name="name">VAT</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.05</field>
+		</record>
+
+		<record id="tax_cst_data" model="account.tax">
+			<field name="name">CST</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.02</field>
+		</record>
+
 	</data>
 </openerp>	

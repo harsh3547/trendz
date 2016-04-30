@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-		
-		<report
-			auto="False"
-			id="trendz_invoice_report_id"
-			model="account.invoice"
-			name="trendz_account_invoice_report"
-			file="trendz/report/trendz_invoice_report.mako"
+
+		<report auto="False" id="trendz_invoice_report_id" model="account.invoice"
+			name="trendz_account_invoice_report" file="trendz/report/trendz_invoice_report.mako"
 			parser="trendz.report.trendz_invoice_report.trendz_invoice_report"
-			string="Trendz Invoice"
-			report_type="webkit"
-			header="False"  />
+			string="Trendz Invoice" report_type="webkit" header="False" />
 	</data>
 	<data noupdate="0">
-        <record id="trendz_report_webkit" model="ir.header_webkit">
-           <field name="name">Trendz Invoice Report</field>
-           <field name="orientation">Portrait</field>
-           <field name="format">A4</field>
-           <field name="margin_top">0.1</field>
-           <field name="margin_bottom">0.1</field>
-           <field name="margin_left">0.1</field>
-           <field name="margin_right">0.1</field>
-                      <field name="css"><![CDATA[body {
+		<record id="trendz_report_webkit" model="ir.header_webkit">
+			<field name="name">Trendz Invoice Report</field>
+			<field name="orientation">Portrait</field>
+			<field name="format">A4</field>
+			<field name="margin_top">0.1</field>
+			<field name="margin_bottom">0.1</field>
+			<field name="margin_left">0.1</field>
+			<field name="margin_right">0.1</field>
+			<field name="css"><![CDATA[body {
 font-family:helvetica;
 font-size:12;
 }
@@ -104,10 +98,11 @@ width:74%;
 }
 .tax {
 width:50%;
-}]]> </field>
-     
-           
-           <field name="html">
+}]]>
+			</field>
+
+
+			<field name="html">
            <![CDATA[<html>
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
@@ -129,10 +124,10 @@ for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
 </head>
 <body style="border:0; margin: 0;" onload="subst()"></body>
 </html>]]>
-           </field>
+			</field>
 
 
-           <field name="footer_html"><![CDATA[<html>
+			<field name="footer_html"><![CDATA[<html>
     <head>
         <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
         <script>
@@ -151,19 +146,19 @@ for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
     <body style="border:0; margin: 0;" onload="subst()">
     </body>
 </html>]]>
-           </field>
+			</field>
 
 
 
 
 
 
-        </record>
-   </data>
-   <data noupdate="0">
-        <record id="trendz_invoice_report_id" model="ir.actions.report.xml">
-           <field name="webkit_header" ref="trendz_report_webkit"></field>
-           <field name="header">False</field>
-        </record>
-   </data> 
+		</record>
+	</data>
+	<data noupdate="0">
+		<record id="trendz_invoice_report_id" model="ir.actions.report.xml">
+			<field name="webkit_header" ref="trendz_report_webkit"></field>
+			<field name="header">False</field>
+		</record>
+	</data>
 </openerp>

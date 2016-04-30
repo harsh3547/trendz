@@ -59,13 +59,16 @@ class trendz_invoice_report(report_sxw.rml_parse):
                 abc2=len(obj.name)/41.0
                 abc3=math.ceil(len(obj.name)/41.0)
                 abc4=int(math.ceil(len(obj.name)/41.0))
-                
+                tax_ids=map(int,obj.invoice_line_tax_id or [])
+                tax_list = [str(float("{0:.2f}".format(obj_tax.amount*100))) for obj_tax in self.pool.get('account.tax').browse(cr,uid,tax_ids,context=None)]
+                tax = ",".join(tax_list)
+                #print "-tax=-=-=",tax
                 #print "-=-=-=-=-=-=,abc's-=-=",abc1,abc2,abc3,abc4
                 effective_line = effective_line + abc4
                 #print "----effective_line",effective_line
                 i+=1
                 if effective_line > page_no*fit_number and effective_line <= (page_no+1)*fit_number:
-                    lines.append({'no':str(i),'name':str(obj.name),'qty':str(obj.quantity),'rate':str(obj.price_unit), 'discount':str(obj.discount) or '', 'rupee':str(money_rs_p[0]),'paisa':str(money_rs_p[1]),'effective_line_no':effective_line})
+                    lines.append({'no':str(i),'name':str(obj.name),'qty':str(obj.quantity),'rate':str(obj.price_unit), 'discount':str(obj.discount) or '', 'tax':tax or '','rupee':str(money_rs_p[0]),'paisa':str(money_rs_p[1]),'effective_line_no':effective_line})
                     effective_line_printed = effective_line
                     print "----effective_line",effective_line , abc1,abc2,abc3,abc4
             print "----------lines , effective_lines",i,effective_line,lines,effective_line_printed    

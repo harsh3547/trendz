@@ -134,19 +134,23 @@ table {
 
 
 			<table BORDER=1 RULES=COLS style="table-layout:fixed;text-align:center;border:solid black;border-width:1px;width:100%;border-right:hidden;border-left:hidden">
-				<col width="65">
+				<col width="35">
 	  			<col width="430">
-	  			<col width="115">
-	  			<col width="123">
-	  			<col width="109">
-	  			<col width="100">
+	  			<col width="70">
+	  			<col width="75">
+	  			<col width="75">
+	  			<col width="75">
+	  			<col width="89">
+	  			<col width="69">
 				<tr style="vertical-align:bottom;"  >
-					<td style="text-align:center;" >S.No.</td>
+					<td style="text-align:center;" >No.</td>
 					<td style="text-align:center;" >Description Of Goods</td>
-					<td style="text-align:center;" >Quantity</td>
+					<td style="text-align:center;" >Qty</td>
 					<td style="text-align:center;" >Rate</td>
+					<td style="text-align:center;" >Disc(%)</td>
+					<td style="text-align:center;" >Tax(%)</td>
 				
-					<td colspan="2" style="text-align:center;">Amount</td>
+					<td colspan="2" style="text-align:center;">Untaxed Amount</td>
 				</tr>
 				<tr style="border-bottom:solid 1px;">
 					<td></td>
@@ -154,6 +158,9 @@ table {
 				
 					<td></td>
 					<td></td>
+					<td></td>
+					<td></td>
+					
 					<td style="border-right:hidden">&nbsp;&nbsp;Rs.</td>
 					<td>&nbsp;&nbsp;P.</td>
 				</tr >
@@ -161,7 +168,8 @@ table {
 					<td> </td>
 					<td> </td>
 					<td> </td>
-				
+					<td></td>
+					<td></td>
 					<td> </td>
 					<td> </td>
 					<td> </td>
@@ -178,8 +186,9 @@ table {
 						<td style="padding-left:3px;">${invoice_line_data[i]['name'] or ''}</td>
 						<td>${invoice_line_data[i]['qty'] or ''}</td>
 						<td>${invoice_line_data[i]['rate'] or ''}</td>
-				
-						<td>${invoice_line_data[i]['rupee'] or ''}</td>
+						<td>${invoice_line_data[i]['discount'] or ''}</td>
+						<td>${invoice_line_data[i]['tax'] or ''}</td>
+						<td style="padding-right:10px;text-align:right;">${invoice_line_data[i]['rupee'] or ''}</td>
 						<td>${invoice_line_data[i]['paisa'] or ''}</td>
 
 					</tr>
@@ -210,10 +219,10 @@ table {
 
 			
 			<table BORDER=1 RULES=ALL style="border:solid black;border-width:1px;border-top:hidden;border-right:hidden;border-left:hidden" >
-				<col width="370">
-	  			<col width="381">
-	  			<col width="111">
-	  			<col width="100">
+				<col width="395">
+	  			<col width="403">
+	  			<col width="89">
+	  			<col width="69">
 				
 				<tr>
 					<td style="height:28mm">
@@ -235,19 +244,19 @@ table {
 					</td>
 					
 					<td style="height:28mm">
-						<div style="border-bottom:solid black 1px;height:9mm;padding-right:20px;padding-top:2px;text-align:right">
+						<div style="border-bottom:solid black 1px;height:9mm;padding-right:10px;padding-top:2px;text-align:right">
 						% if pages== page_no+1 :
 							${split_money(o.amount_untaxed)[0]}
 						% endif
 							</div>
 
-						<div style="border-bottom:solid black 1px;height:9mm;padding-right:20px;padding-top:2px;text-align:right;vertical-align:center">
+						<div style="border-bottom:solid black 1px;height:9mm;padding-right:10px;padding-top:2px;text-align:right;vertical-align:center">
 						% if pages== page_no+1 :
 							${split_money(o.amount_tax)[0]}
 						% endif
 							</div>
-						
-						<div style="height:10mm;padding-right:20px;padding-top:2px;text-align:right;vertical-align:center">
+				
+						<div style="height:10mm;padding-right:10px;padding-top:2px;text-align:right;vertical-align:center">
 						% if pages== page_no+1 :
 							${split_money(o.amount_total)[0]}
 						% endif
