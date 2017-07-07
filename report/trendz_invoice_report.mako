@@ -78,12 +78,12 @@ table {
 				% if company.email: 
 					Email: ${company.email} &nbsp;&nbsp;
 				% endif
-				% if company.tin and (company.phone or company.mobile or company.email):
+				% if company.gstin and (company.phone or company.mobile or company.email):
 					</br>
-					TIN: ${company.tin} &nbsp;&nbsp;
+					GSTIN: ${company.gstin} &nbsp;&nbsp;
 				% endif
-				% if company.tin and not (company.phone or company.mobile or company.email):
-					TIN: ${company.tin} &nbsp;&nbsp;
+				% if company.gstin and not (company.phone or company.mobile or company.email):
+					GSTIN: ${company.gstin} &nbsp;&nbsp;
 				% endif
 				
 			</div>
@@ -116,11 +116,17 @@ table {
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" style="width:100%;border-top:solid black 1px">Purchaser TIN : ${o.partner_id.tin or ''} </td>
+							<td colspan="1" style="width:78%;border-top:solid black 1px;border-right:1px solid black;">Purchaser GSTIN : ${o.partner_id.gstin or ''} </td>
+
+							<td colspan="1" style="width:22%;border-top:solid black 1px;">VEHICLE NO :</td>
+							
+
 							
 						</tr>
 						<tr>
-							<td colspan="2" style="width:100%;border-top:solid black 1px">Goods Sent Through : ${o.transport or ''}</td>
+							<td colspan="1" style="width:78%;border-top:solid black 1px;border-right:1px solid black;">Goods Sent Through : ${o.transport.name or ''}</td>
+
+							<td colspan="1" style="width:22%;border-top:solid black 1px">${o.vehicle_no or ''}</td>
 						</tr>
 						
 					</table>
@@ -129,8 +135,8 @@ table {
 				<table style="width:100%;">
 					<tr><td style="width:30%;">Bill No. : ${o.number or ''}</td></tr>
 					<tr><td style="border-top:solid black 1px">Date : ${date_change(o.date_invoice or False)}</td></tr>
-					<tr><td style="border-top:solid black 1px">GR/RR No. : ${date_change(o.dated or False)}</td></tr>
-					<tr><td style="border-top:solid black 1px">Dated : ${o.dated or ''}</td></tr>
+					<tr><td style="border-top:solid black 1px">GR/RR No. : ${o.gp_no or ''}</td></tr>
+					<tr><td style="border-top:solid black 1px">Dated : ${date_change(o.dated or False)}</td></tr>
 					<tr><td style="border-top:solid black 1px">No. of Package : ${o.packages or ''}</td></tr>
 				</table>
 				</td>
@@ -155,7 +161,7 @@ table {
 					<td style="text-align:center;" >Disc(%)</td>
 					<td style="text-align:center;" >Tax(%)</td>
 				
-					<td colspan="2" style="text-align:center;">Untaxed Amount</td>
+					<td colspan="2" style="text-align:center;">Taxable Amount</td>
 				</tr>
 				<tr style="border-bottom:solid 1px;">
 					<td></td>
@@ -202,7 +208,7 @@ table {
 				
 
 				
-
+			<!--
 				<tr style="text-align:center;height:35px;">
 					<td> </td>
 					<% set tax = o.amount_tax %>
@@ -217,7 +223,7 @@ table {
 					<td> </td>
 					<td> </td>
 				</tr>
-				
+			-->	
 				
 
 			</table>
@@ -230,15 +236,17 @@ table {
 	  			<col width="69">
 				
 				<tr>
-					<td style="height:28mm">
-						<div style="border-bottom:solid black 1px;height:22mm;padding-left:8px;padding-right:2px;padding-top:2px;">
+					<td style="height:44mm">
+						<div style="height:14mm;padding-left:8px;padding-top:2px;text-align:left;border-bottom:solid black 1px;">
+							 HSN / SAC : ${o.hsn_sac or ''}
+						</div>
+						<div style="height:30mm;padding-left:8px;padding-right:2px;padding-top:2px;">
+							Rupees in Words : 
 							% if pages== page_no+1 :
-								Rupees in Words : ${amount_to_text_report(o.amount_total)}
+								${amount_to_text_report(o.amount_total)}
 							% endif
 						</div>
-						<div style="height:6mm;padding-left:2px;padding-top:2px;text-align:center;">
-							Sale Against Central Form C/F/H etc.
-						</div>
+						
 					</td>
 					
 					<td style="height:28mm">
@@ -294,10 +302,10 @@ table {
 
 			<table >
 				<col width="550">
-	  			<col width="140">
-	  			<col width="260">
+	  			<col width="90">
+	  			<col width="310">
 				<tr>
-					<td style="font-size:11pt">
+					<td style="font-size:11pt;border-left:solid black 1px">
 					<ol>
 						<li>Goods once sold will not be taken back.</li>    
 						<li>All disputes are subject to Delhi Jurisdiction only</li>
@@ -305,8 +313,8 @@ table {
 						<li>Our Responsibility ceases on entrusting the goods to the carriers.</li>
 					</ol>
 					</td>
-					<td style="font-size:12pt;vertical-align:top;padding-top:7px;" >E.& O.E.</td>
-					<td style="font-size:14pt;vertical-align:top;padding-top:5px;text-align:right;" ><b>FOR TRENDZ FOOTWEAR&nbsp;&nbsp; </b>
+					<td style="font-size:12pt;vertical-align:top;padding-top:7px" >E.& O.E.</td>
+					<td style="font-size:14pt;vertical-align:top;padding-top:5px;text-align:right;" ><b>FOR NEW TRENDZ FOOTWEAR&nbsp;&nbsp; </b>
 					</br></br></br>Partner / Auth.Sign.&nbsp;&nbsp;
 
 					</td>
