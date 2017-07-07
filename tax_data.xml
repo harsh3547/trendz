@@ -1,5 +1,5 @@
 <openerp>
-	<data noupdate="1">
+	<data noupdate="0">
 
 		<record id="tax_vat_data" model="account.tax">
 			<field name="name">VAT</field>
@@ -15,6 +15,55 @@
 			<field name="active">True</field>
 			<field name="type">percent</field>
 			<field name="amount">0.02</field>
+		</record>
+
+		<record id="tax_igst5_data" model="account.tax">
+			<field name="name">IGST 5%</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.05</field>
+		</record>
+
+		<record id="tax_igst18_data" model="account.tax">
+			<field name="name">IGST 18%</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.18</field>
+		</record>
+
+		<record id="tax_cgst2_5_data" model="account.tax">
+			<field name="name">CGST 2.5%</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.025</field>
+		</record>
+
+		<record id="tax_cgst9_data" model="account.tax">
+			<field name="name">CGST 9%</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.09</field>
+		</record>
+
+
+		<record id="tax_sgst2_5_data" model="account.tax">
+			<field name="name">SGST 2.5%</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.025</field>
+		</record>
+
+		<record id="tax_sgst9_data" model="account.tax">
+			<field name="name">SGST 9%</field>
+			<field name="type_tax_use">sale</field>
+			<field name="active">True</field>
+			<field name="type">percent</field>
+			<field name="amount">0.09</field>
 		</record>
 
 	</data>
