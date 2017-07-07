@@ -37,6 +37,8 @@ class account_invoice(osv.osv):
                                          ('cash_memo','Cash Memo'),
                                          ('bill','Bill')
                                          ],"Billing Type",required = True),
+                'hsn_sac':fields.char("HSN/SAC",size=10),
+                'vehicle_no':fields.char("Vehicle No",size=20),
                 }
     
     

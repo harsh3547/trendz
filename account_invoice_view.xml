@@ -14,6 +14,8 @@
 					<field name="gp_no" />
 					<field name="dated" />
 					<field name="packages" />
+					<field name="vehicle_no" />
+					<field name="hsn_sac" />
 				</xpath>
 			</field>
 		</record>
