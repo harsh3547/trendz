@@ -15,6 +15,7 @@ class trendz_invoice_report(report_sxw.rml_parse):
         self.localcontext.update({
                                   'today':time.strftime("%Y%m%d"),
                                   'len':self._len,
+                                  'gst_tax':self._get_gst_tax,
                                   'cr':cr,
                                   'uid': uid,
                                   'amount_to_text_report':self._amount_to_text_report,
@@ -25,13 +26,27 @@ class trendz_invoice_report(report_sxw.rml_parse):
                                   'get_invoice_line_data':self._get_invoice_line_data,
                                   'date_change':self._date_change,
                                   })
+    
     def _date_change(self,date=False):
-        print date,type(date)
+        #print date,type(date)
         if date:
             date1=datetime.strptime(date,"%Y-%m-%d")
             date=date1.strftime("%d-%m-%Y")
             return date
         return ''
+
+    def _get_gst_tax(self,name):
+        cr=self.cr
+        uid=self.uid
+        for obj in self.pool.get('account.invoice').browse(cr,uid,self.context.get('active_id',False),context=None).tax_line:
+            if (('cgst' in obj.name.lower()) or ('sgst' in obj.name.lower())) and ((name.lower()=='cgst') or (name.lower()=='sgst')):
+                return obj.amount/2.0
+            if ('igst' in obj.name.lower()) and (name.lower()=='igst'):
+                return obj.amount
+            break
+        return 0.0
+
+
 
 
     def _get_pages(self):
@@ -60,8 +75,17 @@ class trendz_invoice_report(report_sxw.rml_parse):
                 abc3=math.ceil(len(obj.name)/41.0)
                 abc4=int(math.ceil(len(obj.name)/41.0))
                 tax_ids=map(int,obj.invoice_line_tax_id or [])
-                tax_list = [str(float("{0:.2f}".format(obj_tax.amount*100))) for obj_tax in self.pool.get('account.tax').browse(cr,uid,tax_ids,context=None)]
-                tax = ",".join(tax_list)
+                if tax_ids:
+                    vat=True
+                    for obj_tax in self.pool.get('account.tax').browse(cr,uid,tax_ids,context=None):
+                        if "GST" in obj_tax.name:
+                            vat=False
+                    if vat:
+                        tax_list = [str(float("{0:.2f}".format(obj_tax.amount*100))) for obj_tax in self.pool.get('account.tax').browse(cr,uid,tax_ids,context=None)]
+                        tax = ",".join(tax_list)
+                    else:
+                        tax_list = [str(obj_tax.name) for obj_tax in self.pool.get('account.tax').browse(cr,uid,tax_ids,context=None)]
+                        tax = "\n".join(tax_list)
                 #print "-tax=-=-=",tax
                 #print "-=-=-=-=-=-=,abc's-=-=",abc1,abc2,abc3,abc4
                 effective_line = effective_line + abc4
@@ -70,14 +94,14 @@ class trendz_invoice_report(report_sxw.rml_parse):
                 if effective_line > page_no*fit_number and effective_line <= (page_no+1)*fit_number:
                     lines.append({'no':str(i),'name':str(obj.name),'qty':str(obj.quantity),'rate':str(obj.price_unit), 'discount':str(obj.discount) or '', 'tax':tax or '','rupee':str(money_rs_p[0]),'paisa':str(money_rs_p[1]),'effective_line_no':effective_line})
                     effective_line_printed = effective_line
-                    print "----effective_line",effective_line , abc1,abc2,abc3,abc4
-            print "----------lines , effective_lines",i,effective_line,lines,effective_line_printed    
+                    #print "----effective_line",effective_line , abc1,abc2,abc3,abc4
+            #print "----------lines , effective_lines",i,effective_line,lines,effective_line_printed    
 
             for i in range(fit_number*(page_no+1)-effective_line_printed):
-                lines.append({'no':False,'name':False,'qty':False,'rate':False, 'discount':False, 'rupee':False,'paisa':False,'effective_line_no':effective_line})
+                lines.append({'no':' ','name':False,'qty':False,'rate':False, 'discount':False, 'rupee':False,'paisa':False,'tax':False,'effective_line_no':effective_line})
             # to leave space for tax free goods
-            for i in range(2):
-                lines.append({'no':False,'name':False,'qty':False,'rate':False, 'discount':False, 'rupee':False,'paisa':False,'effective_line_no':effective_line})
+            for i in range(1):
+                lines.append({'no':' ','name':False,'qty':False,'rate':False, 'discount':False, 'rupee':False,'paisa':False,'effective_line_no':effective_line})
 
 
         
@@ -85,7 +109,7 @@ class trendz_invoice_report(report_sxw.rml_parse):
         return [no_of_invoice_lines,lines]
     
     def _fit_number(self):
-        return 27
+        return 18
         
     def _get_city_state_zip(self,partner_obj):
         address = (partner_obj.city if partner_obj.city else '') + (' - '+partner_obj.zip if partner_obj.zip else '') + (', '+partner_obj.state_id.name if partner_obj.state_id else '')

@@ -101,18 +101,24 @@ table {
 				<td style="width:70%;border-right:1px solid black;">
 					<table style="width:100%;">
 						<tr>
-							<td style="width:8%;height:23mm;vertical-align:top;">M/s</td>
-							<td style="width:92%;height:23mm;vertical-align:top;">
-								${o.partner_id.name} </br>
-								% if o.partner_id.street:
-									${o.partner_id.street} </br>
-								% endif
-								% if o.partner_id.street2:
-									${o.partner_id.street2} </br>
-								% endif
-								% if get_city_state_zip(o.partner_id):
-									${get_city_state_zip(o.partner_id)}
-								% endif
+							<td colspan="2">
+								<table style="width:100%;">
+									<tr>
+									<td style="width:8%;height:23mm;vertical-align:top;">M/s</td>
+									<td style="width:92%;height:23mm;vertical-align:top;">
+										${o.partner_id.name} </br>
+										% if o.partner_id.street:
+											${o.partner_id.street} </br>
+										% endif
+										% if o.partner_id.street2:
+											${o.partner_id.street2} </br>
+										% endif
+										% if get_city_state_zip(o.partner_id):
+											${get_city_state_zip(o.partner_id)}
+										% endif
+									</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 						<tr>
@@ -188,17 +194,17 @@ table {
 					
 				
 				<% for i in range(no_of_invoice_lines) %>
-					<tr style="text-align:center">
+					<tr style="text-align:center;height:10mm">
 						% if not invoice_line_data[i]['no']:
 							<td>&nbsp;</td>
 						% else:
-							<td style="vertical-align:top">${invoice_line_data[i]['no']}</td>
+							<td>${invoice_line_data[i]['no']}</td>
 						% endif
 						<td style="padding-left:3px;">${invoice_line_data[i]['name'] or ''}</td>
 						<td>${invoice_line_data[i]['qty'] or ''}</td>
 						<td>${invoice_line_data[i]['rate'] or ''}</td>
 						<td>${invoice_line_data[i]['discount'] or ''}</td>
-						<td>${invoice_line_data[i]['tax'] or ''}</td>
+						<td style="font-size:10pt">${invoice_line_data[i]['tax'] or ''}</td>
 						<td style="padding-right:10px;text-align:right;">${invoice_line_data[i]['rupee'] or ''}</td>
 						<td>${invoice_line_data[i]['paisa'] or ''}</td>
 
@@ -249,14 +255,18 @@ table {
 						
 					</td>
 					
-					<td style="height:28mm">
-						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">Total Sale Value before Adding VAT/CST </div>
-						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">VAT & CST </div>
+					<td style="height:44mm">
+						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">Total Sale Value before adding GST </div>
+						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">SGST value</div>
 
-						<div style="height:10mm;padding-left:2px;padding-top:2px;text-align:center">Total Sale Price With VAT/CST&nbsp;</div>
+						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">CGST value</div>
+
+						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">IGST value</div>
+
+						<div style="height:8mm;padding-left:2px;padding-top:2px;text-align:center">Total Sale Value With GST&nbsp;</div>
 					</td>
 					
-					<td style="height:28mm">
+					<td style="height:44mm">
 						<div style="border-bottom:solid black 1px;height:9mm;padding-right:10px;padding-top:2px;text-align:right">
 						% if pages== page_no+1 :
 							${split_money(o.amount_untaxed)[0]}
@@ -265,18 +275,30 @@ table {
 
 						<div style="border-bottom:solid black 1px;height:9mm;padding-right:10px;padding-top:2px;text-align:right;vertical-align:center">
 						% if pages== page_no+1 :
-							${split_money(o.amount_tax)[0]}
+							${split_money(gst_tax('sgst'))[0]}
+						% endif
+							</div>
+
+						<div style="border-bottom:solid black 1px;height:9mm;padding-right:10px;padding-top:2px;text-align:right;vertical-align:center">
+						% if pages== page_no+1 :
+							${split_money(gst_tax('cgst'))[0]}
+						% endif
+							</div>
+
+						<div style="border-bottom:solid black 1px;height:9mm;padding-right:10px;padding-top:2px;text-align:right;vertical-align:center">
+						% if pages== page_no+1 :
+							${split_money(gst_tax('igst'))[0]}
 						% endif
 							</div>
 				
-						<div style="height:10mm;padding-right:10px;padding-top:2px;text-align:right;vertical-align:center">
+						<div style="height:8mm;padding-right:10px;padding-top:2px;text-align:right;vertical-align:center">
 						% if pages== page_no+1 :
 							${split_money(o.amount_total)[0]}
 						% endif
 							</div>
 					</td>
 					
-					<td style="height:28mm">
+					<td style="height:45mm">
 						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">
 						% if pages== page_no+1 :
 							${split_money(o.amount_untaxed)[1]}
@@ -285,11 +307,23 @@ table {
 
 						<div style="border-bottom:solid black 1px;height:9mm;padding-right:2px;padding-top:2px;text-align:center">
 						% if pages== page_no+1 :
-							${split_money(o.amount_tax)[1]}
+							${split_money(gst_tax('sgst'))[1]}
 						% endif
 							</div>
 
-						<div style="height:10mm;padding-left:2px;padding-top:2px;text-align:center">
+						<div style="border-bottom:solid black 1px;height:9mm;padding-right:2px;padding-top:2px;text-align:center">
+						% if pages== page_no+1 :
+							${split_money(gst_tax('cgst'))[1]}
+						% endif
+							</div>
+
+						<div style="border-bottom:solid black 1px;height:9mm;padding-right:2px;padding-top:2px;text-align:center">
+						% if pages== page_no+1 :
+							${split_money(gst_tax('igst'))[1]}
+						% endif
+							</div>
+
+						<div style="height:8mm;padding-left:2px;padding-top:2px;text-align:center">
 						% if pages== page_no+1 :
 							${split_money(o.amount_total)[1]}
 						% endif
