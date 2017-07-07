@@ -12,6 +12,7 @@
 				<xpath expr="/form/sheet/group/group/field[@name='title']"
 					position="after">
 					<field name="cst" />
+					<field name="gstin" />
 				</xpath>
 			</field>
 		</record>
@@ -24,6 +25,7 @@
 				<xpath expr="//field[@name = 'phone']" position="after">
 					<field name="mobile" />
 					<field name="tin" />
+					<field name="gstin" />
 				</xpath>
 			</field>
 		</record>
