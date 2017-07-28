@@ -37,13 +37,18 @@ class account_invoice(osv.osv):
                                          ('cash_memo','Cash Memo'),
                                          ('bill','Bill')
                                          ],"Billing Type",required = True),
-                'hsn_sac':fields.char("HSN/SAC",size=10),
+                'hsn_sac':fields.many2one("hsn.code",string="HSN/SAC"),
                 'vehicle_no':fields.char("Vehicle No",size=20),
                 }
     
     
     _defaults = {'billing_type':'bill',
                  }
+
+class hsn_code(osv.osv):
+    _name='hsn.code'
+    _columns={'name':fields.char('HSN CODE')
+    }
 
 class transport_transport(osv.osv):
     _name='transport.transport'

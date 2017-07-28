@@ -244,7 +244,7 @@ table {
 				<tr>
 					<td style="height:44mm">
 						<div style="height:14mm;padding-left:8px;padding-top:2px;text-align:left;border-bottom:solid black 1px;">
-							 HSN / SAC : ${o.hsn_sac or ''}
+							 HSN / SAC : ${o.hsn_sac.name or ''}
 						</div>
 						<div style="height:30mm;padding-left:8px;padding-right:2px;padding-top:2px;">
 							Rupees in Words : 
