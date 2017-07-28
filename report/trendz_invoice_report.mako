@@ -257,11 +257,11 @@ table {
 					
 					<td style="height:44mm">
 						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">Total Sale Value before adding GST </div>
-						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">SGST value</div>
+						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">SGST value [@ ${gst_tax_percent('sgst')}]</div>
 
-						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">CGST value</div>
+						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">CGST value [@ ${gst_tax_percent('cgst')}]</div>
 
-						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">IGST value</div>
+						<div style="border-bottom:solid black 1px;height:9mm;padding-left:2px;padding-top:2px;text-align:center">IGST value [@ ${gst_tax_percent('igst')}]</div>
 
 						<div style="height:8mm;padding-left:2px;padding-top:2px;text-align:center">Total Sale Value With GST&nbsp;</div>
 					</td>

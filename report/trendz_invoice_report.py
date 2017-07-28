@@ -18,6 +18,7 @@ class trendz_invoice_report(report_sxw.rml_parse):
                                   'gst_tax':self._get_gst_tax,
                                   'cr':cr,
                                   'uid': uid,
+                                  'gst_tax_percent':self._get_gst_tax_percent,
                                   'amount_to_text_report':self._amount_to_text_report,
                                   'split_money':self._split_money,
                                   'get_city_state_zip':self._get_city_state_zip,
@@ -34,6 +35,24 @@ class trendz_invoice_report(report_sxw.rml_parse):
             date=date1.strftime("%d-%m-%Y")
             return date
         return ''
+
+    def _get_gst_tax_percent(self,name):
+        cr=self.cr
+        uid=self.uid
+        inv_obj=self.pool.get('account.invoice').browse(cr,uid,self.context.get('active_id',False),context=None)
+        tax=""
+        for line in inv_obj.invoice_line:
+            if line.invoice_line_tax_id:
+                tax=line.invoice_line_tax_id
+                break
+        print "tax--line--",tax
+        tax_ids=map(int,tax or [])
+        print tax_ids
+        for obj in self.pool.get('account.tax').browse(cr,uid,tax_ids,context=None):
+            if name in obj.name.lower():
+                return format(obj.amount*100,'.2g')+'%'
+        return ""
+ 
 
     def _get_gst_tax(self,name):
         cr=self.cr
